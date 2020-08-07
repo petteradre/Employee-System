@@ -12,5 +12,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\EmployeeSystem\EmployeeSystem.Data.csproj" />
+  </ItemGroup>
+
 
 </Project>

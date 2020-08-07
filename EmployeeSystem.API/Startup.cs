@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EmployeeSystem.API.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -25,7 +27,11 @@ namespace EmployeeSystem.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            string sConnection = Configuration.GetConnectionString("EnterpriceConnection");
+            Console.WriteLine(sConnection);
             services.AddControllers();
+            services.AddDbContext<EmployeeSystemDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("EnterpriceConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
